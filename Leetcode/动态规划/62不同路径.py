@@ -7,20 +7,20 @@ https://leetcode-cn.com/problems/unique-paths/description/
 """
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        array = [[0]*n]*m
-        print(len(array))
+        array = [[0]*n for _ in range(m)]
         count = 1
         for i in range(m):
             for j in range(n):
-                array[i][j]=count
-                # if i ==0:
-                #     array[i][j]=1
-                #
-                # else:
-                #     array[i][j] = array[i-1][j]+array[i][j-1]
+                if i == 0 or j == 0:
+
+                    array[i][j]=1
+                else:
+                    array[i][j] = array[i-1][j]+array[i][j-1]
+
                 count+=1
-        print(array)
+        return array[-1][-1]
 
 if __name__ == '__main__':
     so = Solution()
-    so.uniquePaths(5,3)
+    result = so.uniquePaths(3,3)
+    print(result)
